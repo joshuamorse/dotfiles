@@ -9,9 +9,11 @@
 " VARIABLE SETTINGS
 "------------------------------------------------------------------------------
 
-"set complete=k
-"autocmd Syntax * exec('set dict=/usr/share/vim/syntax/' .expand('<amatch>') .'.vim')
-"autocmd Syntax * exec('set dict=/home/jmo/test.txt')
+
+syn on
+au Syntax * exe("set dict+="~/Dropbox/symfony_api.md")
+"au Syntax * exe("set dict+=".$VIMRUNTIME."/syntax/".expand('<amatch>').".vim")
+
 "set dict=/home/jmo/test.txt
 
 " status line
@@ -32,6 +34,7 @@
 
     " font settings
     :colo molokai
+    :tabnew ~/Dropbox/symfony_api.md
 
     " misc
       " remove the toolbar and scrollbars
@@ -42,11 +45,8 @@
         set columns=130
 
     if has("mac")
-      "set guifont=Inconsolata:h14
-      "set guifont=Deja\ Vu\ Sans\ Mono:h14
       set guifont=Consolas:h13
     elseif has("unix")
-      "set guifont=Monospace\ 9
       set guifont=Liberation\ Mono\ 9 bold
     elseif has("win32") || has("win64")
       set guifont=Consolas:h10:cANSI
@@ -76,6 +76,7 @@
 
 " NERD Tree Options
   let NERDTreeShowHidden=0
+  let NERDTreeShowLineNumbers=1
 
 " Misc Settings
   "set t_Co=256
@@ -123,9 +124,9 @@
     map <D-8> 8gt
     map <D-9> 9gt
 
-  " Symfony Keys
-    map ,scc :!./symfony cc<CR>
-    map ,sbar :!./symfony doctrine:build --all --and-load<CR>
+  " Symfony Keys -- uses shell scripts I've set up.
+    map ,scc :scc<CR>
+    map ,sbar :ccbar<CR>
 
   " Various shortcuts for working with tabs
     map ,t :tabnew  
