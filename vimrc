@@ -1,21 +1,21 @@
-" JM .vimrc
-"------------------------------------------------------------------------------
-" PREFERENCES
-"------------------------------------------------------------------------------
-" Allows multiple lines to be pasted correctly
-"vnoremap p <Esc>:let current_reg = @"<CR>gvs<C-R>=current_reg<CR><Esc>
+" jmflava vimrc!
+"
+"    d8b                .d888 888                                          d8b                               
+"   Y8P               d88P"  888                                          Y8P                               
+"                     888    888                                                                            
+"  8888 88888b.d88b.  888888 888  8888b.  888  888  8888b.       888  888 888 88888b.d88b.  888d888 .d8888b 
+"  "888 888 "888 "88b 888    888     "88b 888  888     "88b      888  888 888 888 "888 "88b 888P"  d88P"    
+"   888 888  888  888 888    888 .d888888 Y88  88P .d888888      Y88  88P 888 888  888  888 888    888      
+"   888 888  888  888 888    888 888  888  Y8bd8P  888  888       Y8bd8P  888 888  888  888 888    Y88b.    
+"   888 888  888  888 888    888 "Y888888   Y88P   "Y888888        Y88P   888 888  888  888 888     "Y8888P 
+"   888                                                                                                     
+"  d88P                                                                                                     
+"888P"                                                                                                      
 
+"
 "------------------------------------------------------------------------------
 " VARIABLE SETTINGS
 "------------------------------------------------------------------------------
-
-
-syn on
-au Syntax * exe("set dict+="~/Dropbox/symfony_api.md")
-"au Syntax * exe("set dict+=".$VIMRUNTIME."/syntax/".expand('<amatch>').".vim")
-
-"set dict=/home/jmo/test.txt
-
 " status line
   if has('statusline')
     " always show a status line
@@ -64,8 +64,7 @@ au Syntax * exe("set dict+="~/Dropbox/symfony_api.md")
   "let Tlist_Enable_Fold_Column=0
   "let Tlist_WinWidth=50
 
-
-" Make UP and DOWN keys scroll whole page
+" Make UP and DOWN keys scroll whole page -- not working --
   nnoremap <DOWN> 1<C-E>j
   nnoremap <UP> 1<C-Y>k
 
@@ -113,7 +112,7 @@ au Syntax * exe("set dict+="~/Dropbox/symfony_api.md")
 " KEY MAPPINGS
 "------------------------------------------------------------------------------
 
-  " Select tabs with command+#, just like in iTerm, Firefox, Chrome, etc. <3 -- Thanks, Richtaur!
+  " Select tabs with command+#, just like in iTerm, Firefox, Chrome, etc. <3 -- Thanks, Richtaur! -- not working --
     map <D-1> 1gt
     map <D-2> 2gt
     map <D-3> 3gt
@@ -149,7 +148,7 @@ au Syntax * exe("set dict+="~/Dropbox/symfony_api.md")
     map	,<TAB>e :NERDTreeToggle<CR>
     map	,<TAB><SPACE> :o .<CR>
 
-  " working on this
+  " working on this -- would be nice to input a line number and have it automagically yanked for you.
   "  map <silent>xy mk<CR>:silent<CR>yy'k
 
   " Let's use jj as an alternative to the ESC key
@@ -181,14 +180,11 @@ au Syntax * exe("set dict+="~/Dropbox/symfony_api.md")
   " Search and replace.
     map ,sr :%s/
 
-  " CTRL + X will close a buffer.
+  " CTRL + X will close a buffer; not really used very much these days...
     map <C-x> :bd<CR>
 
-  " g + direction for window split change
+  " g + direction for window split change. This beats the hell out of CTRL + W + direction.
     map g <C-w>
-
-  " fuzzy finder
-    "map ,f :FufFile<CR>
 
   " Set TAB to allow for auto-completion (note: this RULES)
     fun! InsertTabWrapper()
@@ -212,7 +208,7 @@ au Syntax * exe("set dict+="~/Dropbox/symfony_api.md")
     inoremap <tab> <c-r>=InsertTabWrapper()<CR>
     inoremap <s-tab> <c-r>=ShiftInsertTabWrapper()<CR>
 
-  " to beta!
+  " to beta! -- temp convinience shortcut.
     map ,beta :!./symfony project:deploy beta -t --go<CR>
 
 
