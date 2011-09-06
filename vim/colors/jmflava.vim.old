@@ -1,0 +1,103 @@
+" jmflava color scheme
+
+set background=dark
+hi clear
+
+if exists("syntax_on")
+  syntax reset
+endif
+
+let colors_name = "jmflava"
+
+" Special for HTML
+hi htmlTag guifg=#B4D3E2
+hi htmlEndTag guifg=#B4D3E2
+hi htmlTagName guifg=#FFFFFF
+
+" PHP
+hi Function guifg=#80D500
+hi phpVarSelector guifg=#FFFFFF " $ in a var
+hi phpFunctions guifg=#8AA6C1
+hi phpOperator guifg=#FFFFFF
+hi phpParent guifg=#DDDDDD
+hi Include guifg=#22ea43 " include function
+hi Define guifg=#22ea43 " echo
+
+" CSS
+hi cssSelectorOp guifg=#B53B3C
+hi link cssSelectorOp2 cssSelectorOp
+
+
+" General colors
+hi Identifier guifg=#FFFFFF gui=bold " php vars
+hi Normal guifg=#8AA6C1
+hi NonText guifg=#070707
+hi Cursor guifg=black guibg=white
+hi LineNr guifg=#3D3D3D guibg=black
+hi VertSplit guifg=#202020 guibg=#202020
+hi StatusLine guifg=#CCCCCC guibg=#202020 gui=italic
+hi StatusLineNC guifg=black guibg=#202020
+hi Folded guifg=#a0a8b0 guibg=#384048
+hi Title guifg=#f6f3e8
+hi Visual guibg=#262D51
+hi SpecialKey guifg=#808080 guibg=#343434
+hi WildMenu guifg=green guibg=yellow
+hi PmenuSbar guifg=black guibg=white
+hi Error gui=undercurl
+hi ErrorMsg guifg=white guibg=#FF6C60 gui=BOLD
+hi WarningMsg guifg=white guibg=#FF6C60 gui=BOLD
+
+" Message displayed in lower left, such as --INSERT--
+hi ModeMsg guifg=black       guibg=#C6C5FE     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
+
+"if version >= 700 " Vim 7.x specific colors
+"  hi CursorLine     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+"  hi CursorColumn   guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+"  hi MatchParen     guifg=#f6f3e8     guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
+"  hi Pmenu          guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+"  hi PmenuSel       guifg=#333333     guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+"  hi Search         guifg=NONE        guibg=NONE        gui=underline ctermfg=NONE        ctermbg=NONE        cterm=underline
+"endif
+
+" Syntax highlighting
+hi Comment guifg=#428BDD gui=italic
+hi String guifg=#CC66FF
+hi Number guifg=#EDDD5A
+hi Keyword guifg=#FF9D00
+hi PreProc guifg=#FF9D00
+hi Conditional guifg=#FF9D00
+hi Todo guifg=#8f8f8f
+hi Constant guifg=#999999
+hi Type guifg=#FFFFB6
+hi Statement guifg=#6699CC
+hi Special guifg=black
+hi Delimiter guifg=#00A0A0
+hi Operator guifg=white
+
+hi link Character       Constant
+hi link Boolean         Constant
+hi link Float           Number
+hi link Repeat          Statement
+hi link Label           Statement
+hi link Exception       Statement
+hi link Include         PreProc
+hi link Define          PreProc
+hi link Macro           PreProc
+hi link PreCondit       PreProc
+hi link StorageClass    Type
+hi link Structure       Type
+hi link Typedef         Type
+hi link Tag             Special
+hi link SpecialChar     Special
+hi link SpecialComment  Special
+hi link Debug           Special
+
+
+" Special for HTML
+hi link htmlTag         Keyword 
+hi link htmlTagName     Conditional 
+hi link htmlEndTag      Identifier 
+
+
+" Special for Javascript
+hi link javaScriptNumber      Number 

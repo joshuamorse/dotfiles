@@ -16,6 +16,37 @@
 "------------------------------------------------------------------------------
 " VARIABLE SETTINGS
 "------------------------------------------------------------------------------
+
+fun! FindActionView()
+  " sf-specific function to take you to corresponding action from view and vice versa
+
+  let file = expand("%:t:r")
+  let function_search = search('/Actions/')
+
+  if function_search
+    let what_am_i = 'action'
+  else
+    let what_am_i = 'view'
+  endif
+
+  if what_am_i == 'view'
+    let file_s = substitute(file, 'Success', '', 'g')
+  endif
+
+  " search for execute% in corresponding action
+
+  echo file_s
+  
+endfun
+
+"map ,fav :call FindActionView()<CR>
+
+
+:set nu
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
+
 " status line
   if has('statusline')
     " always show a status line
@@ -34,15 +65,17 @@
 
     " font settings
     :colo molokai
-    :tabnew ~/Dropbox/symfony_api.md
+
+    " ref files
+    map <D-r> :tabnew  ~/Dropbox/api/.<CR>
 
     " misc
       " remove the toolbar and scrollbars
         set guioptions-=Tlr 
         set go-=T
-        set transp=8
-        set lines=700
-        set columns=130
+        set transparency=5
+        set lines=60
+        set columns=145
 
     if has("mac")
       set guifont=Consolas:h13
@@ -57,14 +90,19 @@
   endif
 
 " Tag List Options
-  "let Tlist_Use_Right_Window=1
-  "let Tlist_Use_Horiz_Window=0
-  "let Tlist_Compact_Format=1
-  "let Tlist_File_Fold_Auto_Close=1
-  "let Tlist_Enable_Fold_Column=0
-  "let Tlist_WinWidth=50
+  let Tlist_Use_Right_Window=1
+  let Tlist_Compact_Format=1
+  let Tlist_Use_Horiz_Window=0
+  let Tlist_File_Fold_Auto_Close=1
+  let Tlist_Enable_Fold_Column=0
+  let Tlist_Show_One_File=1
+  let Tlist_WinWidth=40
 
-" Make UP and DOWN keys scroll whole page -- not working --
+
+" Sparkup
+  let g:sparkupExecuteMapping = ',e'
+
+" Make UP and DOWN keys scroll whole page @notworking
   nnoremap <DOWN> 1<C-E>j
   nnoremap <UP> 1<C-Y>k
 
@@ -75,7 +113,6 @@
 
 " NERD Tree Options
   let NERDTreeShowHidden=0
-  let NERDTreeShowLineNumbers=1
 
 " Misc Settings
   "set t_Co=256
@@ -85,11 +122,11 @@
   set noswapfile
   "set fdm=marker
   set history=50
-  set nocompatible
-  "set foldenable
+  "set nocompatible
+  set foldenable
   "set foldclose=all
   set nowrap
-  set number
+  set nu
   set ruler
   set showcmd
   set showmatch
@@ -106,11 +143,18 @@
   set listchars=extends:…,tab:\ \ ,trail:⌫
   :filetype plugin on
   :syntax on
+  au BufRead,BufNewFile *.twig set syntax=htmljinja
 
 
 "------------------------------------------------------------------------------
 " KEY MAPPINGS
 "------------------------------------------------------------------------------
+
+  " Quickly change transparency settings.
+    map ,r0 :set transp=0<CR>
+    map ,r1 :set transp=10<CR>
+    map ,r2 :set transp=15<CR>
+    map ,r3 :set transp=20<CR>
 
   " Select tabs with command+#, just like in iTerm, Firefox, Chrome, etc. <3 -- Thanks, Richtaur! -- not working --
     map <D-1> 1gt
@@ -146,10 +190,14 @@
   " NERD Tree, son!
     map	,<TAB>r :NERDTreeMirror<CR>
     map	,<TAB>e :NERDTreeToggle<CR>
+    map	,<TAB>t :TlistToggle<CR>
     map	,<TAB><SPACE> :o .<CR>
 
   " working on this -- would be nice to input a line number and have it automagically yanked for you.
   "  map <silent>xy mk<CR>:silent<CR>yy'k
+  
+  " Break @ 80 chars
+    map ,lb _80lF<SPACE>vdi<RETURN><ESC>_
 
   " Let's use jj as an alternative to the ESC key
     inoremap jj <Esc>
@@ -180,11 +228,50 @@
   " Search and replace.
     map ,sr :%s/
 
-  " CTRL + X will close a buffer; not really used very much these days...
-    map <C-x> :bd<CR>
-
   " g + direction for window split change. This beats the hell out of CTRL + W + direction.
     map g <C-w>
+
+
+"------------------------------------------------------------------------------
+" HOMEBREW FUNCTIONS
+"------------------------------------------------------------------------------
+
+    "fun! FindSource()
+      "let word = expand("<cword>")
+      ""let cmd = 'egrep -Rlw --exclude-dirs=".svn cache" --exclude-dir="cache" "(class|function) ' . word . '" *'
+      "let cmd = 'egrep -Rlw "(class|(public|private|abstract) function) ' . word . '" * | grep -v "cache" | grep -v "log" | grep -v ".svn"'
+      "let cmd_output = system(cmd)
+
+      "if cmd_output == ''
+        "echomsg "Declaration for " . word . " not found!"
+      "else
+        ""  @todo if cmd_output not already open in buffer...
+
+          "" open file in new tab
+          "execute "tabnew " . cmd_output
+          
+          "" better search for [word] via function [word] OR class [word]
+          "execute "/class " . word . "\\|function " . word
+      "endif
+    "endfun
+
+    map ,g :call FindSource()<CR>
+
+    fun! CopyLineDown()
+      let line_number = input('Enter line number: ') 
+      if !empty(line_number)
+        let save_cursor = getpos(".")
+        call setpos('.', [0, line_number, 1, 0])
+        echo getpos('.')
+        execute(":yank")
+        call setpos('.', save_cursor)
+        execute(":put")
+      endif 
+    endfun
+
+    map ,cl :call CopyLineDown()<CR>
+    inoremap ,cl <c-r>=CopyLineDown()<CR>
+
 
   " Set TAB to allow for auto-completion (note: this RULES)
     fun! InsertTabWrapper()
@@ -211,10 +298,20 @@
   " to beta! -- temp convinience shortcut.
     map ,beta :!./symfony project:deploy beta -t --go<CR>
 
+  " php-doc shortcuts.
+    inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
+    nnoremap <C-P> :call PhpDocSingle()<CR> 
+    vnoremap <C-P> :call PhpDocRange()<CR> 
+
+
 
 "------------------------------------------------------------------------------
 " PROGRAMMER SHORTCUTS
 "------------------------------------------------------------------------------
+  
+  " Twig
+    inoremap ,ts i{%  %}<ESC>3ha
+    inoremap ,te i{{  }}<ESC>3ha
 
   " XHTML Wrappers
     :vmap sem    "zdi<em><C-R>z</em><ESC>
@@ -223,7 +320,7 @@
     :vmap sst    "zdi<strong><C-R>z</strong><ESC>
     :vmap sp     "zdi<p><C-R>z</p><ESC>
     :vmap sdiv   "zdi<div><C-R>z</div><ESC>
-    :vmap span   "zdi<span><C-R>z</span><ESC>
+    :vmap sspan   "zdi<span><C-R>z</span><ESC>
 
   " SVN
     map ,com :!svn commit <C-R>=expand("%")<CR><CR>
@@ -232,6 +329,7 @@
     map ,add :!svn add <C-R>=expand("%")<CR><CR>
 
   " PHP
+    inoremap ,ae '' => '',<ESC>F=F'i
     map ,ptag i<?php<RETURN><RETURN>
     inoremap ,ptag <?php<RETURN><RETURN>
     inoremap ,pif if ()<RETURN>{<RETURN><TAB>//code<RETURN><BACKSPACE>}<ESC><ESC>3kf(a
@@ -250,16 +348,17 @@
     inoremap ,pqq $query = '<RETURN><TAB>SELECT *<RETURN>FROM table<RETURN><BACKSPACE>';<RETURN><RETURN>$query = mysql_query($query) or die(mysql_error());<RETURN><RETURN>while($row = mysql_fetch_assoc($query))<RETURN>{<RETURN><TAB>$rtn[] = $row;<RETURN><BACKSPACE>}<ESC>7kf<SPACE>l
     inoremap ,pts date('Y-m-d H:i:s');<ESC>o<ESC>
     inoremap ,ppo $_POST['']<ESC>F'i
+    inoremap ,par array()<ESC>F(a
     inoremap ,pre $_REQUEST['']<ESC>F'i
     inoremap ,pge $_GET['']<ESC>F'i
     inoremap ,pip $_SERVER["REMOTE_ADDR"]
     inoremap ,ppr print_r();<ESC>2ha
-    inoremap ,vdd var_dump(); die;<ESC>8hi
+    inoremap ,vdd var_dump(); die;<ESC>F(a
     inoremap ,vd var_dump();<ESC>2ha
     inoremap ,di var_dump();<ESC>2ha
     inoremap ,prq require();<ESC>2ha
     inoremap ,pfu function () {<RETURN><RETURN>}<ESC>2k_f(i
-    inoremap ,pdoc /**<RETURN>*<RETURN>*<RETURN>* @package _<RETURN>* @subpackage<RETURN>* @author Joshua Morse <joshua.morse@iostudio.com><RETURN>*<RETURN>*/<ESC>6ka
+    inoremap ,pd /**<RETURN>*<RETURN>*<RETURN>* @package _<RETURN>* @subpackage<RETURN>* @author Joshua Morse <joshua.morse@iostudio.com><RETURN>*<RETURN>*/<ESC>6ka
 
   " HTML Shortcuts
     inoremap ,hul <ul><RETURN><TAB><li></li><RETURN><BACKSPACE></ul><ESC>k_f>a
@@ -286,6 +385,8 @@
     inoremap ,jfo for(i; i < 10; i++)<RETURN>{<ESC>o}<ESC>2kfi
     inoremap ,jfi for(var in ob)<RETURN>{<ESC>o}<ESC>kI<ESC>fv
     inoremap ,jtc try()<RETURN>{<RETURN><RETURN>}<ESC>2k_f(a
+    inoremap ,jrf return false;
+    inoremap ,jal alert();<ESC>F(a
 
   " CSS
     inoremap ,cbo border: 1px solid black;
@@ -629,3 +730,4 @@ abbreviate wednesday Wednesday
 abbreviate thursday Thursday
 abbreviate friday Friday
 abbreviate saturday Saturday
+abbreviate respository repository
