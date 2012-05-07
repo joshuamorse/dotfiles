@@ -63,12 +63,6 @@ match OverLength /\%81v.\+/
       "set fuoptions=maxvert,maxhorz
       "au GUIEnter * set fullscreen
 
-    " font settings
-    :colo molokai
-
-    " ref files
-    map <D-r> :tabnew  ~/Dropbox/api/.<CR>
-
     " misc
       " remove the toolbar and scrollbars
         set guioptions-=Tlr 
@@ -88,6 +82,8 @@ match OverLength /\%81v.\+/
     set cursorline
 
   endif
+
+:colo molokai
 
 " Tag List Options
   let Tlist_Use_Right_Window=1
@@ -131,10 +127,10 @@ match OverLength /\%81v.\+/
   set showcmd
   set showmatch
   set autoindent
-  set softtabstop=2
+  set softtabstop=4
   set expandtab
-  set tabstop=2
-  set shiftwidth=2
+  set tabstop=4
+  set shiftwidth=4
   set undolevels=500
   set showtabline=18
   set showmode
