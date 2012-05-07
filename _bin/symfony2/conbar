@@ -1,0 +1,5 @@
+con doctrine:generate:entities $1;
+con doctrine:database:drop --force;
+con doctrine:database:create;
+con doctrine:schema:create;
+con doctrine:fixtures:load

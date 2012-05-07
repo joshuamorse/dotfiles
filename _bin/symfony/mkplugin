@@ -1,0 +1,37 @@
+# names
+  base_name=$1
+  name=$base_name"Plugin"
+
+
+# dirs
+  base_path="plugins/"$name
+  modules_path=$base_path"/modules"
+  config_path=$base_path"/config"
+  fixtures_path=$base_path"/data/fixtures"
+  doctrine_path=$base_path"/config/doctrine"
+
+
+# files
+  routing=$config_path"/routing.yml.sample";
+  fixtures=$base_path"/data/fixtures/fixtures.yml.sample";
+  schema=$doctrine_path"/schema.yml.sample";
+
+
+# do stuff
+  # create base plugin folder
+    mkdir $base_path;
+
+  # create modules folder
+    mkdir $modules_path;
+
+  # create config folders
+    mkdir -p $doctrine_path;
+    mkdir -p $fixtures_path;
+
+  # config files
+    touch $routing;
+    touch $schema;
+    touch $fixtures;
+
+# nofify me!
+say "created $1 plugin!"

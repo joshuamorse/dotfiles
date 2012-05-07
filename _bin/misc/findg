@@ -1,0 +1,1 @@
+grep -Rl $1 * | xargs mvim -p

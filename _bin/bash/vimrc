@@ -1,0 +1,4 @@
+#!/bin/bash
+# Opens .vimrc for editing.
+
+vim ~/.vimrc

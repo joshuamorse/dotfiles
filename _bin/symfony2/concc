@@ -1,0 +1,2 @@
+rm -rf app/cache/*;
+rm -rf web/media/cache/*

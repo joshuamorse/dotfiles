@@ -1,0 +1,4 @@
+#!/bin/bash
+# Opens .bashrc for editing.
+
+vim ~/.bashrc

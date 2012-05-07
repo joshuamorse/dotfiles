@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./symfony doctrine:build --all --and-load --no-confirmation

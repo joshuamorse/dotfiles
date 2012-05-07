@@ -1,0 +1,4 @@
+#!/bin/bash
+# Sets tab names in iterm2.
+
+echo -e "\033];$1\007"

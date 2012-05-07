@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+# Test script for a pet project.
+
+conbar Poto;
+con fos:user:create jm jm@jm.com jm;
+con fos:user:promote jm ROLE_ADMIN;
+con poto:add:starter-items 11;
+con poto:add:item 1 excalibur 11
