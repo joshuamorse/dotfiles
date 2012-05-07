@@ -17,7 +17,7 @@ $filesToInstall = array(
 );
 
 foreach ($filesToInstall as $file => $targetFile) {
-    system("rm -rf {$targetDir}/.{$targetFile}");
+    system("rm -rf {$targetDir}/{$targetFile}");
 
     echo "Installing {$file}\n";
     system("ln -s {$currentDir}/{$file} {$targetDir}/{$targetFile}");
