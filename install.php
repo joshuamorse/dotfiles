@@ -6,19 +6,19 @@
  * @author Joshua Morse <dashvibe@gmail.com>
  */
 
-$currentDir = __DIR__;
-$targetDir = '~';
+$currentDir     = __DIR__;
+$targetDir      = '~';
 $filesToInstall = array(
-    'bashrc'  => '.bashrc',
-    '_bin'     => 'bin',
-    'inputrc' => '.inputrc',
-    'vim'     => '.vim',
-    'vimrc'   => '.vimrc',
+    '_rc/bashrc'  => '.bashrc',
+    '_dir/bin'    => 'bin',
+    '_rc/inputrc' => '.inputrc',
+    '_dir/vim'    => '.vim',
+    '_rc/vimrc'   => '.vimrc',
 );
 
 foreach ($filesToInstall as $file => $targetFile) {
     system("rm -rf {$targetDir}/{$targetFile}");
 
-    echo "Installing {$file}\n";
+    echo "Installing {$targetFile}\n";
     system("ln -s {$currentDir}/{$file} {$targetDir}/{$targetFile}");
 }
