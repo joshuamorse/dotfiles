@@ -111,6 +111,12 @@ match OverLength /\%81v.\+/
   let NERDTreeShowHidden=0
 
 " Misc Settings
+  " Use spaces instead of tabs.
+  set expandtab
+  set shiftwidth=4
+  set softtabstop=4
+  set tabstop=4
+
   "set t_Co=256
   set backspace=indent,eol,start
   set sidescrolloff=10
@@ -127,10 +133,6 @@ match OverLength /\%81v.\+/
   set showcmd
   set showmatch
   set autoindent
-  set softtabstop=4
-  set expandtab
-  set tabstop=4
-  set shiftwidth=4
   set undolevels=500
   set showtabline=18
   set showmode
@@ -196,8 +198,8 @@ match OverLength /\%81v.\+/
     map ,lb _80lF<SPACE>vdi<RETURN><ESC>_
 
   " Let's use jj as an alternative to the ESC key
-    inoremap jj <Esc>
-    nnoremap JJJJ <Nop>
+    "inoremap jj <Esc>
+    "nnoremap JJJJ <Nop>
 
   " Nobody likes typing about :set nu and :set nonu to toggle line numbers
     map ,# :set nu<CR>
