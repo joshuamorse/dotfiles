@@ -1,6 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/jmo'
 let g:netrw_dirhist_2='/Users/joshuamorse/Sites/iostudio/todays_hero'
 let g:netrw_dirhist_3='/Users/joshuamorse/Sites/iostudio/iostudio.com'
 let g:netrw_dirhist_4='/Users/joshuamorse/Library/Application Support/TextMate/PlugIns/ViMate.tmplugin'
+let g:netrw_dirhist_5='/etc/apache2'
+let g:netrw_dirhist_6='/etc/network'
+let g:netrw_dirhist_7='/etc/apache2'
