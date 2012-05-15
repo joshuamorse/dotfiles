@@ -19,6 +19,7 @@ export GREP_COLOR="1;32"
 export EDITOR="vim"
 
 # append personal bin path
+#export HOME_BIN="~"
 export PATH=~/bin:~/bin/exe:~/bin/bash:~/bin/mamp:~/bin/symfony:~/bin/git:~/bin/misc:$PATH
 
 # macports bin paths
@@ -27,11 +28,6 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # git paths
 export GIT_HOME="/opt/local"
 export PATH="$GIT_HOME/bin:$PATH"
-
-export HOME_BIN="~"
-export PATH="$HOME_BIN/bin:$PATH"
-
-#export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:usr/X11/bin:~/bin:/usr/local:/etc/paths.d/:/etc/manpaths.d/"
 
 # if we have git completion, use a git-aware prompt
 if [ -f /usr/local/bin/git-completion.bash ]; then
@@ -59,13 +55,3 @@ if [ "$TERM" != "dumb" ]; then
         ;;
     esac
 fi
-
-# Include environment-specific odds-n-ends
-#if [ -f ~/.bashrc.local ]; then
-  #. ~/.bashrc.local
-#fi
-
-# Include alias definitions
-#if [ -f ~/.bash_aliases ]; then
-  #. ~/.bash_aliases
-#fi

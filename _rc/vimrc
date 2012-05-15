@@ -102,6 +102,12 @@ match OverLength /\%81v.\+/
   let NERDTreeShowHidden=0
 
 " Misc Settings
+  " Use spaces instead of tabs.
+  set expandtab
+  set shiftwidth=4
+  set softtabstop=4
+  set tabstop=4
+
   "set t_Co=256
   set backspace=indent,eol,start
   set sidescrolloff=10
@@ -118,10 +124,6 @@ match OverLength /\%81v.\+/
   set showcmd
   set showmatch
   set autoindent
-  set softtabstop=4
-  set expandtab
-  set tabstop=4
-  set shiftwidth=4
   set undolevels=500
   set showtabline=18
   set showmode
