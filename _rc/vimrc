@@ -80,7 +80,6 @@ match OverLength /\%81v.\+/
     endif
 
     set cursorline
-
   endif
 
 :colo molokai
@@ -93,14 +92,6 @@ match OverLength /\%81v.\+/
   let Tlist_Enable_Fold_Column=0
   let Tlist_Show_One_File=1
   let Tlist_WinWidth=40
-
-
-" Sparkup
-  let g:sparkupExecuteMapping = ',e'
-
-" Make UP and DOWN keys scroll whole page @notworking
-  nnoremap <DOWN> 1<C-E>j
-  nnoremap <UP> 1<C-Y>k
 
 " Search options
   set ignorecase " case-insensitive
@@ -154,33 +145,10 @@ match OverLength /\%81v.\+/
     map ,r2 :set transp=15<CR>
     map ,r3 :set transp=20<CR>
 
-  " Select tabs with command+#, just like in iTerm, Firefox, Chrome, etc. <3 -- Thanks, Richtaur! -- not working --
-    map <D-1> 1gt
-    map <D-2> 2gt
-    map <D-3> 3gt
-    map <D-4> 4gt
-    map <D-5> 5gt
-    map <D-6> 6gt
-    map <D-7> 7gt
-    map <D-8> 8gt
-    map <D-9> 9gt
-
-  " Symfony Keys -- uses shell scripts I've set up.
-    map ,scc :scc<CR>
-    map ,sbar :ccbar<CR>
-
   " Various shortcuts for working with tabs
     map ,t :tabnew  
     map ,d :tabprev<CR> 
     map ,f :tabnext<CR>
-    map <D-]> :tabnext<CR>
-    map <D-[> :tabprev<CR>
-
-  " Buffers!
-    map ,bp :bprev!<CR>
-    map ,bn :bnext!<CR>
-    "map ,d :MBEbp<CR> 
-    "map ,f :MBEbn<CR>
 
   " Edit our .vimrc file
     map ,vimrc :tabnew ~/.vimrc<CR><CR>
@@ -189,17 +157,10 @@ match OverLength /\%81v.\+/
     map	,<TAB>r :NERDTreeMirror<CR>
     map	,<TAB>e :NERDTreeToggle<CR>
     map	,<TAB>t :TlistToggle<CR>
-    map	,<TAB><SPACE> :o .<CR>
+    "map	,<TAB><SPACE> :o .<CR>
 
-  " working on this -- would be nice to input a line number and have it automagically yanked for you.
-  "  map <silent>xy mk<CR>:silent<CR>yy'k
-  
   " Break @ 80 chars
     map ,lb _80lF<SPACE>vdi<RETURN><ESC>_
-
-  " Let's use jj as an alternative to the ESC key
-    "inoremap jj <Esc>
-    "nnoremap JJJJ <Nop>
 
   " Nobody likes typing about :set nu and :set nonu to toggle line numbers
     map ,# :set nu<CR>
@@ -215,7 +176,6 @@ match OverLength /\%81v.\+/
 
   " Boy, typing :w sure is a pain!
     map ; :w<CR>
-    map <D-s> :w
 
   " Need a new line? BR below...
     map brb o<ESC>k
@@ -233,43 +193,6 @@ match OverLength /\%81v.\+/
 "------------------------------------------------------------------------------
 " HOMEBREW FUNCTIONS
 "------------------------------------------------------------------------------
-
-    "fun! FindSource()
-      "let word = expand("<cword>")
-      ""let cmd = 'egrep -Rlw --exclude-dirs=".svn cache" --exclude-dir="cache" "(class|function) ' . word . '" *'
-      "let cmd = 'egrep -Rlw "(class|(public|private|abstract) function) ' . word . '" * | grep -v "cache" | grep -v "log" | grep -v ".svn"'
-      "let cmd_output = system(cmd)
-
-      "if cmd_output == ''
-        "echomsg "Declaration for " . word . " not found!"
-      "else
-        ""  @todo if cmd_output not already open in buffer...
-
-          "" open file in new tab
-          "execute "tabnew " . cmd_output
-          
-          "" better search for [word] via function [word] OR class [word]
-          "execute "/class " . word . "\\|function " . word
-      "endif
-    "endfun
-
-    map ,g :call FindSource()<CR>
-
-    fun! CopyLineDown()
-      let line_number = input('Enter line number: ') 
-      if !empty(line_number)
-        let save_cursor = getpos(".")
-        call setpos('.', [0, line_number, 1, 0])
-        echo getpos('.')
-        execute(":yank")
-        call setpos('.', save_cursor)
-        execute(":put")
-      endif 
-    endfun
-
-    map ,cl :call CopyLineDown()<CR>
-    inoremap ,cl <c-r>=CopyLineDown()<CR>
-
 
   " Set TAB to allow for auto-completion (note: this RULES)
     fun! InsertTabWrapper()
@@ -293,9 +216,6 @@ match OverLength /\%81v.\+/
     inoremap <tab> <c-r>=InsertTabWrapper()<CR>
     inoremap <s-tab> <c-r>=ShiftInsertTabWrapper()<CR>
 
-  " to beta! -- temp convinience shortcut.
-    map ,beta :!./symfony project:deploy beta -t --go<CR>
-
   " php-doc shortcuts.
     inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
     nnoremap <C-P> :call PhpDocSingle()<CR> 
@@ -311,28 +231,12 @@ match OverLength /\%81v.\+/
     inoremap ,ts i{%  %}<ESC>3ha
     inoremap ,te i{{  }}<ESC>3ha
 
-  " XHTML Wrappers
-    :vmap sem    "zdi<em><C-R>z</em><ESC>
-    :vmap sli    "zdi<li><C-R>z</li><ESC>
-    :vmap sform  "zdi<form><C-R>z</form><ESC>
-    :vmap sst    "zdi<strong><C-R>z</strong><ESC>
-    :vmap sp     "zdi<p><C-R>z</p><ESC>
-    :vmap sdiv   "zdi<div><C-R>z</div><ESC>
-    :vmap sspan   "zdi<span><C-R>z</span><ESC>
-
-  " SVN
-    map ,com :!svn commit <C-R>=expand("%")<CR><CR>
-    map ,lock :!svn lock <C-R>=expand("%")<CR><CR>
-    map ,up :!svn update <C-R>=expand("%")<CR><CR>
-    map ,add :!svn add <C-R>=expand("%")<CR><CR>
-
   " PHP
-    inoremap ,ae '' => '',<ESC>F=F'i
     map ,ptag i<?php<RETURN><RETURN>
     inoremap ,ptag <?php<RETURN><RETURN>
-    inoremap ,pif if ()<RETURN>{<RETURN><TAB>//code<RETURN><BACKSPACE>}<ESC><ESC>3kf(a
-    inoremap ,pife if ()<RETURN>{<RETURN><TAB>//code<RETURN><BACKSPACE>}<RETURN>else<RETURN>{<RETURN><TAB>//code...<RETURN><BACKSPACE>}<ESC><ESC>7kf(a
-    inoremap ,pwh while ()<RETURN>{<RETURN><TAB>//code<RETURN><BACKSPACE>}<ESC>3kf(a
+    inoremap ,pif if () {<RETURN><TAB>//code<RETURN><BACKSPACE>}<ESC><ESC>3kf(a
+    inoremap ,pife if () {<RETURN><TAB>//code<RETURN><BACKSPACE>} else {<RETURN><TAB>//code...<RETURN><BACKSPACE>}<ESC><ESC>7kf(a
+    inoremap ,pwh while () {<RETURN><TAB>//code<RETURN><BACKSPACE>}<ESC>3kf(a
     inoremap ,pfe foreach ($array as $key => $val)<RETURN>{<RETURN><TAB>//code<RETURN><BACKSPACE>}<ESC>3kf(a
     inoremap ,pfo for ($i = 0; $i < 0; $i++)<RETURN>{<RETURN><TAB>//code<RETURN><BACKSPACE>}<ESC>3kf(a
     inoremap ,psw switch () {<TAB><ESC>o}<ESC>k_f(a
@@ -356,47 +260,18 @@ match OverLength /\%81v.\+/
     inoremap ,di var_dump();<ESC>2ha
     inoremap ,prq require();<ESC>2ha
     inoremap ,pfu function () {<RETURN><RETURN>}<ESC>2k_f(i
-    inoremap ,pd /**<RETURN>*<RETURN>*<RETURN>* @package _<RETURN>* @subpackage<RETURN>* @author Joshua Morse <joshua.morse@iostudio.com><RETURN>*<RETURN>*/<ESC>6ka
 
   " HTML Shortcuts
-    inoremap ,hul <ul><RETURN><TAB><li></li><RETURN><BACKSPACE></ul><ESC>k_f>a
-    inoremap ,hol <ol><RETURN><TAB><li></li><RETURN><BACKSPACE></ol><ESC>k_f>a
-    inoremap ,hli <li></li><ESC>F>a
-    inoremap ,hpp <p></p><ESC>F>a
-    inoremap ,hdv <div></div><ESC>F>a
-    inoremap ,hse <select name=""><RETURN><RETURN></select><ESC>2kf"a
-    inoremap ,hop <option value=""></option><ESC>F"i
-    inoremap ,hem <em></em><ESC>F>a
-    inoremap ,hsr <strong></strong><ESC>F>a
-    inoremap ,hbr <br/>
-    inoremap ,hfo <form action="" id=""></form><ESC>F"i
-    inoremap ,hti <title></title><ESC>F>a
-    inoremap ,hpr <pre></pre><ESC>F>a
-    inoremap ,the <textarea></textarea><ESC>F>a
     inoremap ,hst <style type="text/css"><RETURN><RETURN></style><ESC>ki
-    inoremap ,hsc <script type="text/javascript"><RETURN><RETURN></script><ESC>ki<TAB>
-    inoremap ,hin <input type="" value="" name="" />
+    inoremap ,hsc <script><RETURN><RETURN></script><ESC>ki<TAB>
 
   " Javascript
-    inoremap ,jif if()<RETURN>{<ESC>o}<ESC>2kf(a
-    inoremap ,jwh while()<RETURN>{<ESC>o}<ESC>kI<ESC>kf(a
-    inoremap ,jfo for(i; i < 10; i++)<RETURN>{<ESC>o}<ESC>2kfi
-    inoremap ,jfi for(var in ob)<RETURN>{<ESC>o}<ESC>kI<ESC>fv
-    inoremap ,jtc try()<RETURN>{<RETURN><RETURN>}<ESC>2k_f(a
-    inoremap ,jrf return false;
     inoremap ,jal alert();<ESC>F(a
+    inoremap ,jcl console.log();<ESC>F(a
 
   " CSS
     inoremap ,cbo border: 1px solid black;
     inoremap ,cdn display: none;
-    inoremap ,cwi width:;<ESC>ha<SPACE>
-    inoremap ,che height:;<ESC>ha<SPACE>
-    inoremap ,cfl float:;<ESC>ha<SPACE>
-    inoremap ,cpa padding:;<ESC>ha<SPACE>
-    inoremap ,ccl clear:;<ESC>ha<SPACE>
-    inoremap ,cba background:;<ESC>ha<SPACE>
-    inoremap ,cbp background-position:;<ESC>ha<SPACE>
-    inoremap ,cfo font:;<ESC>ha<SPACE>
 
 "------------------------------------------------------------------------------
 " SEMANTAC CORRECTION
