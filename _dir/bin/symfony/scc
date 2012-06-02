@@ -1,3 +1,4 @@
 #!/bin/bash
 
-./symfony cc;rm -rf cache/*
+./symfony cc;
+sudo rm -rf cache/*
