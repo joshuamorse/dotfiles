@@ -9,11 +9,12 @@
 $currentDir     = __DIR__;
 $targetDir      = '~';
 $filesToInstall = array(
-    '_rc/bashrc'  => '.bashrc',
-    '_dir/bin'    => 'bin',
-    '_rc/inputrc' => '.inputrc',
-    '_dir/vim'    => '.vim',
-    '_rc/vimrc'   => '.vimrc',
+    '_dir/bin'               => 'bin',
+    '_dir/vim'               => '.vim',
+    '_rc/bashrc'             => '.bashrc',
+    '_rc/bashrc_cool_prompt' => '.bashrc_cool_prompt',
+    '_rc/inputrc'            => '.inputrc',
+    '_rc/vimrc'              => '.vimrc',
 );
 
 foreach ($filesToInstall as $file => $targetFile) {

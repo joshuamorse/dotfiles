@@ -129,7 +129,7 @@ match OverLength /\%81v.\+/
   set showmode
   set noerrorbells " no beeps, please
   set visualbell
-  set listchars=extends:…,tab:\ \ ,trail:⌫
+  "set listchars=extends:…,tab:\ \ ,trail:⌫
   :filetype plugin on
   :syntax on
   au BufRead,BufNewFile *.twig set syntax=htmljinja
@@ -254,8 +254,8 @@ match OverLength /\%81v.\+/
     inoremap ,pre $_REQUEST['']<ESC>F'i
     inoremap ,pge $_GET['']<ESC>F'i
     inoremap ,pip $_SERVER["REMOTE_ADDR"]
-    inoremap ,ppr print_r();<ESC>2ha
-    inoremap ,vdd var_dump(); die;<ESC>F(a
+    inoremap ,ppr print_r(); // debug-jm<ESC>2ha
+    inoremap ,vdd var_dump(); die; // debug-jm<ESC>F(a
     inoremap ,vd var_dump();<ESC>2ha
     inoremap ,di var_dump();<ESC>2ha
     inoremap ,prq require();<ESC>2ha
