@@ -57,6 +57,6 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 # Use the cool prompt. Courtesy of Eric Thelin.
-if [ -f ~/bin/bash/.bashrc_cool_prompt ]; then
-    source ~/bin/bash/.bashrc_cool_prompt
+if [ -f ~/.bashrc_cool_prompt ]; then
+    source ~/.bashrc_cool_prompt
 fi
