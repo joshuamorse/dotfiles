@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ls lib/migration/doctrine | sort -n | grep -n php

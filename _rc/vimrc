@@ -233,6 +233,7 @@ match OverLength /\%81v.\+/
 
   " PHP
     map ,ptag i<?php<RETURN><RETURN>
+    inoremap ,pdi die();<ESC>F(a
     inoremap ,ptag <?php<RETURN><RETURN>
     inoremap ,pif if () {<RETURN><TAB>//code<RETURN><BACKSPACE>}<ESC><ESC>3kf(a
     inoremap ,pife if () {<RETURN><TAB>//code<RETURN><BACKSPACE>} else {<RETURN><TAB>//code...<RETURN><BACKSPACE>}<ESC><ESC>7kf(a

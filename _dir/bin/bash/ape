@@ -1,4 +1,0 @@
-#!/bin/bash
-# Opens apache2's enabled sites dir.
-
-cd /etc/apache2/sites-enabled

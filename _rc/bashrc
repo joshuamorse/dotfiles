@@ -20,7 +20,11 @@ export EDITOR="vim"
 
 # append personal bin path
 #export HOME_BIN="~"
-export PATH=~/bin:~/bin/exe:~/bin/bash:~/bin/mamp:~/bin/symfony:~/bin/git:~/bin/misc:$PATH
+export PATH=~/bin:~/bin/exe:~/bin/bash:~/bin/mamp:$PATH
+export PATH=~/bin/git:$PATH
+export PATH=~/bin/symfony:$PATH
+export PATH=~/bin/symfony2:$PATH
+export PATH=~/bin/misc:$PATH
 
 # macports bin paths
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
