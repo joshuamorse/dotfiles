@@ -15,6 +15,7 @@ $filesToInstall = array(
     '_rc/bashrc_cool_prompt' => '.bashrc_cool_prompt',
     '_rc/inputrc'            => '.inputrc',
     '_rc/vimrc'              => '.vimrc',
+    '_rc/tmux.conf'          => '.tmux.conf',
 );
 
 foreach ($filesToInstall as $file => $targetFile) {
