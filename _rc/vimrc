@@ -105,8 +105,7 @@ match OverLength /\%81v.\+/
   set tabstop=4
   set expandtab
   set softtabstop=4
-
-  "set t_Co=256
+  set t_Co=256
   set backspace=indent,eol,start
   set sidescrolloff=10
   set nobackup
