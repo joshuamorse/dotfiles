@@ -36,7 +36,7 @@ fun! FindActionView()
   " search for execute% in corresponding action
 
   echo file_s
-  
+
 endfun
 
 "map ,fav :call FindActionView()<CR>
@@ -57,14 +57,14 @@ match OverLength /\%81v.\+/
   set ruler
   set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 
-  if has('gui_running') 
+  if has('gui_running')
     " full screen
       "set fuoptions=maxvert,maxhorz
       "au GUIEnter * set fullscreen
 
     " misc
       " remove the toolbar and scrollbars
-        set guioptions-=Tlr 
+        set guioptions-=Tlr
         set go-=T
         set transparency=5
         set lines=60
@@ -101,13 +101,8 @@ match OverLength /\%81v.\+/
   let NERDTreeShowHidden=0
 
 " Misc Settings
-  " Use spaces instead of tabs.
-  set expandtab
-  set shiftwidth=4
-  set softtabstop=4
-  set tabstop=4
 
-  "set t_Co=256
+  set t_Co=256
   set backspace=indent,eol,start
   set sidescrolloff=10
   set nobackup
@@ -133,6 +128,13 @@ match OverLength /\%81v.\+/
   :syntax on
   au BufRead,BufNewFile *.twig set syntax=htmljinja
 
+  " Use spaces instead of tabs.
+  set smartindent
+  set tabstop=4
+  set shiftwidth=4
+  set expandtab
+
+
 
 "------------------------------------------------------------------------------
 " KEY MAPPINGS
@@ -145,8 +147,8 @@ match OverLength /\%81v.\+/
     map ,r3 :set transp=20<CR>
 
   " Various shortcuts for working with tabs
-    map ,t :tabnew  
-    map ,d :tabprev<CR> 
+    map ,t :tabnew
+    map ,d :tabprev<CR>
     map ,f :tabnext<CR>
 
   " Edit our .vimrc file
@@ -188,6 +190,10 @@ match OverLength /\%81v.\+/
   " g + direction for window split change. This beats the hell out of CTRL + W + direction.
     map g <C-w>
 
+  " Highlight trailing whitespace
+	highlight WhitespaceEOL ctermbg=red guibg=red
+	autocmd BufWinEnter * match WhitespaceEOL /\s\+$/
+
 
 "------------------------------------------------------------------------------
 " HOMEBREW FUNCTIONS
@@ -216,16 +222,16 @@ match OverLength /\%81v.\+/
     inoremap <s-tab> <c-r>=ShiftInsertTabWrapper()<CR>
 
   " php-doc shortcuts.
-    inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
-    nnoremap <C-P> :call PhpDocSingle()<CR> 
-    vnoremap <C-P> :call PhpDocRange()<CR> 
+    inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+    nnoremap <C-P> :call PhpDocSingle()<CR>
+    vnoremap <C-P> :call PhpDocRange()<CR>
 
 
 
 "------------------------------------------------------------------------------
 " PROGRAMMER SHORTCUTS
 "------------------------------------------------------------------------------
-  
+
   " Twig
     inoremap ,ts i{%  %}<ESC>3ha
     inoremap ,te i{{  }}<ESC>3ha
