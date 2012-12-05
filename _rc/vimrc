@@ -16,29 +16,6 @@
 " VARIABLE SETTINGS
 "------------------------------------------------------------------------------
 
-"fun! FindActionView()
-  "" sf-specific function to take you to corresponding action from view and vice versa
-
-  "let file = expand("%:t:r")
-  "let function_search = search('/Actions/')
-
-  "if function_search
-    "let what_am_i = 'action'
-  "else
-    "let what_am_i = 'view'
-  "endif
-
-  "if what_am_i == 'view'
-    "let file_s = substitute(file, 'Success', '', 'g')
-  "endif
-
-  "" search for execute% in corresponding action
-
-  "echo file_s
-"endfun
-"map ,fav :call FindActionView()<CR>
-
-
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
@@ -81,7 +58,7 @@ match OverLength /\%81v.\+/
 " Colors
   ":colo molokai
   :colo solarized
-  let g:solarized_contrast="high"
+  let g:solarized_contrast="normal"
   let g:solarized_visibility="high"
   set background=dark
 
