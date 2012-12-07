@@ -31,6 +31,9 @@ match OverLength /\%81v.\+/
   set ruler
   set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 
+" Colors
+  :colo molokai
+
   if has('gui_running')
     " full screen
       "set fuoptions=maxvert,maxhorz
@@ -53,14 +56,13 @@ match OverLength /\%81v.\+/
     endif
 
     set cursorline
-  endif
 
-" Colors
-  ":colo molokai
-  :colo solarized
-  let g:solarized_contrast="normal"
-  let g:solarized_visibility="high"
-  set background=dark
+    :colo solarized
+    let g:solarized_contrast="normal"
+    let g:solarized_visibility="high"
+    set background=dark
+
+  endif
 
 " Tag List Options
   let Tlist_Use_Right_Window=1
