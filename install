@@ -1,3 +1,5 @@
+#!/usr/bin/env php
+
 <?php
 /**
  * A quick and dirty script to symlink various dotfiles to a home directory.
