@@ -147,7 +147,7 @@ match OverLength /\%81v.\+/
     map ,r3 :set transp=20<CR>
 
   " Various shortcuts for working with tabs
-    map ,t :tabnew
+    map ,t :tabnew 
     map ,d :tabprev<CR>
     map ,f :tabnext<CR>
 
