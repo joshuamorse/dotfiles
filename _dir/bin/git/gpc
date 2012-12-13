@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+
+<?php
+
+$command = 'git symbolic-ref HEAD';
+$branch = str_replace('refs/heads/', '', trim(shell_exec($command)));
+$command = sprintf('git push origin %s', $branch);
+
+echo "{$command}\n";
+system($command);
