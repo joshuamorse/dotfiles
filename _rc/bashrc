@@ -61,12 +61,12 @@ if [ "$TERM" != "dumb" ]; then
     esac
 fi
 
-# Use the cool prompt. Courtesy of Eric Thelin.
-if [ -f ~/.bashrc_cool_prompt ]; then
-    source ~/.bashrc_cool_prompt
-fi
-
 # Use a local bash config, if available.
 if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
+fi
+
+# Use the cool prompt. Courtesy of Eric Thelin.
+if [ -f ~/.bashrc.prompt ]; then
+    source ~/.bashrc.prompt
 fi
