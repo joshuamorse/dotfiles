@@ -20,7 +20,8 @@ export EDITOR="vim"
 
 # append personal bin path
 #export HOME_BIN="~"
-export PATH=~/bin:~/bin/exe:~/bin/bash:~/bin/mamp:$PATH
+export PATH=~/bin:$PATH
+export PATH=~/bin/bash:$PATH
 export PATH=~/bin/git:$PATH
 export PATH=~/bin/symfony:$PATH
 export PATH=~/bin/symfony2:$PATH
@@ -60,7 +61,12 @@ if [ "$TERM" != "dumb" ]; then
     esac
 fi
 
+# Use a local bash config, if available.
+if [ -f ~/.bashrc.local ]; then
+    . ~/.bashrc.local
+fi
+
 # Use the cool prompt. Courtesy of Eric Thelin.
-if [ -f ~/.bashrc_cool_prompt ]; then
-    source ~/.bashrc_cool_prompt
+if [ -f ~/.bashrc.prompt ]; then
+    source ~/.bashrc.prompt
 fi
