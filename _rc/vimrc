@@ -121,6 +121,9 @@ match OverLength /\%81v.\+/
 " KEY MAPPINGS
 "------------------------------------------------------------------------------
 
+  " Shortcut to convert tabs to spaces.
+    map ,rt :set expandtab<CR>:%retab!<CR>
+
   " Quickly change transparency settings.
     map ,r0 :set transp=0<CR>
     map ,r1 :set transp=10<CR>
