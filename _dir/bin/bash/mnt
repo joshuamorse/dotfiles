@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+
+<?php
+
+$mounts = require_once "{$_SERVER['HOME']}/.mntrc";
+
+if (!isset($argv[1])) {
+    die("A key is required!\n");
+}
+if (!isset($mounts[$argv[1]])) {
+    die("That key doesn't exist in the defined mounts!\n");
+}
+
+$mount = $mounts[$argv[1]];
+if (!file_exists($mount['path'])) {
+    system("mkdir {$mount['path']}");
+}
+system("sshfs {$mount['connection']} {$mount['path']}");

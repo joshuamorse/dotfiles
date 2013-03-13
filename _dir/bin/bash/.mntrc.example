@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+
+<?php
+
+return array(
+    'key' => array(
+        'connection' => 'user@address:/path/to/dir',
+        'path'       => '~/path/to/mount',
+    ),
+    'another_key' => array(
+        'connection' => 'user@address:/path/to/dir',
+        'path'       => '~/another/path/to/mount',
+    ),
+);
