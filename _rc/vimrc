@@ -121,6 +121,9 @@ match OverLength /\%81v.\+/
 " KEY MAPPINGS
 "------------------------------------------------------------------------------
 
+  " Shortcut to convert tabs to spaces.
+    map ,rt :set expandtab<CR>:%retab!<CR>
+
   " Quickly change transparency settings.
     map ,r0 :set transp=0<CR>
     map ,r1 :set transp=10<CR>
@@ -242,7 +245,7 @@ match OverLength /\%81v.\+/
     inoremap ,pre $_REQUEST['']<ESC>F'i
     inoremap ,pge $_GET['']<ESC>F'i
     inoremap ,pip $_SERVER["REMOTE_ADDR"]
-    inoremap ,ppr print_r(); // debug-jm<ESC>2ha
+    inoremap ,ppr print_r(); die; // debug-jm<ESC>19ha
     inoremap ,vdd var_dump(); die; // debug-jm<ESC>F(a
     inoremap ,vd var_dump();<ESC>2ha
     inoremap ,di var_dump();<ESC>2ha

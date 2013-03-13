@@ -11,12 +11,13 @@ $targetDir      = '~';
 $filesToInstall = array(
     '_dir/bin'               => 'bin',
     '_dir/vim'               => '.vim',
+    '_rc/bashrc'             => '.bash_profile',
     '_rc/bashrc'             => '.bashrc',
     '_rc/bashrc_local_mac'   => '.bashrc.local.mac',
     '_rc/bashrc_prompt'      => '.bashrc.prompt',
     '_rc/inputrc'            => '.inputrc',
-    '_rc/vimrc'              => '.vimrc',
     '_rc/tmux.conf'          => '.tmux.conf',
+    '_rc/vimrc'              => '.vimrc',
 );
 
 foreach ($filesToInstall as $file => $targetFile) {
