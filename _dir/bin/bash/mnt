@@ -16,3 +16,16 @@ if (!file_exists($mount['path'])) {
     system("mkdir {$mount['path']}");
 }
 system("sshfs {$mount['connection']} {$mount['path']}");
+
+
+// Example .mntrc
+/*
+<?php
+
+return array(
+    'connection_name' => array(
+        'connection' => 'user@host:/path/to/dir',
+        'path' => '/Users/username/Sites',
+    ),
+);
+*/
