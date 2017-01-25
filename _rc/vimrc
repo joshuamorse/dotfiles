@@ -16,9 +16,9 @@
 " VARIABLE SETTINGS
 "------------------------------------------------------------------------------
 
+execute pathogen#infect()
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
-
 
 " status line
   if has('statusline')
@@ -83,6 +83,7 @@ match OverLength /\%81v.\+/
 
 " Misc Settings
 
+  set term=xterm
   set t_Co=256
   set backspace=indent,eol,start
   set sidescrolloff=10
@@ -105,7 +106,7 @@ match OverLength /\%81v.\+/
   set noerrorbells " no beeps, please
   set visualbell
   "set listchars=extends:…,tab:\ \ ,trail:⌫
-  :filetype plugin on
+  filetype plugin on
   :syntax on
   au BufRead,BufNewFile *.twig set syntax=htmljinja
 
@@ -139,7 +140,7 @@ match OverLength /\%81v.\+/
   " Edit our .vimrc file
     map ,vimrc :tabnew ~/.vimrc<CR><CR>
 
-  " NERD Tree, son!
+  " NERD Tree!
     map ,<TAB>r :NERDTreeMirror<CR>
     map ,<TAB>e :NERDTreeToggle<CR>
     map ,<TAB>t :TlistToggle<CR>
@@ -183,29 +184,6 @@ match OverLength /\%81v.\+/
 "------------------------------------------------------------------------------
 " HOMEBREW FUNCTIONS
 "------------------------------------------------------------------------------
-
-  " Set TAB to allow for auto-completion (note: this RULES)
-    fun! InsertTabWrapper()
-        let col = col('.') - 1
-        if !col || getline('.')[col - 1] !~ '\k'
-           return "\<tab>"
-        else
-           return "\<c-p>"
-        endif
-    endfun
-
-    fun! ShiftInsertTabWrapper()
-        let col = col('.') - 1
-        if !col || getline('.')[col - 1] !~ '\k'
-           return "\<s-tab>"
-        else
-           return "\<c-n>"
-        endif
-    endfun
-
-    inoremap <tab> <c-r>=InsertTabWrapper()<CR>
-    inoremap <s-tab> <c-r>=ShiftInsertTabWrapper()<CR>
-
   " php-doc shortcuts.
     inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
     nnoremap <C-P> :call PhpDocSingle()<CR>
@@ -216,11 +194,6 @@ match OverLength /\%81v.\+/
 "------------------------------------------------------------------------------
 " PROGRAMMER SHORTCUTS
 "------------------------------------------------------------------------------
-
-  " Twig
-    inoremap ,ts i{%  %}<ESC>3ha
-    inoremap ,te i{{  }}<ESC>3ha
-
   " PHP
     map ,ptag i<?php<RETURN><RETURN>
     inoremap ,pdi die();<ESC>F(a
