@@ -70,3 +70,5 @@ fi
 if [ -f ~/.bashrc.prompt ]; then
     source ~/.bashrc.prompt
 fi
+
+alias cgrep="grep --color=always"

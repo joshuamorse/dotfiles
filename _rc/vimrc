@@ -1,6 +1,6 @@
 
 "    d8b                .d888 888                                          d8b                               
-"   Y8P               d88P"  888                                          Y8P                               
+               d88P"  888                                          Y8P                               
 "                     888    888                                                                            
 "  8888 88888b.d88b.  888888 888  8888b.  888  888  8888b.       888  888 888 88888b.d88b.  888d888 .d8888b 
 "  "888 888 "888 "88b 888    888     "88b 888  888     "88b      888  888 888 888 "888 "88b 888P"  d88P"    
@@ -20,6 +20,9 @@ execute pathogen#infect()
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+" let g:indentLine_setColors = 0
+let g:indentLine_color_term = 1
+
 " status line
   if has('statusline')
     " always show a status line
@@ -32,7 +35,9 @@ match OverLength /\%81v.\+/
   set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 
 " Colors
-  :colo molokai
+  :colo desert " tmp while ssh'ing in
+  " :colo molokai
+  map ,cc :colo Tomorrow-Night<CR>
 
   if has('gui_running')
     " full screen
@@ -64,14 +69,8 @@ match OverLength /\%81v.\+/
 
   endif
 
-" Tag List Options
-  let Tlist_Use_Right_Window=1
-  let Tlist_Compact_Format=1
-  let Tlist_Use_Horiz_Window=0
-  let Tlist_File_Fold_Auto_Close=1
-  let Tlist_Enable_Fold_Column=0
-  let Tlist_Show_One_File=1
-  let Tlist_WinWidth=40
+" TagBar Options
+  map ,<TAB>t :TagbarToggle<CR>
 
 " Search options
   set ignorecase " case-insensitive
@@ -83,7 +82,6 @@ match OverLength /\%81v.\+/
 
 " Misc Settings
 
-  set term=xterm
   set t_Co=256
   set backspace=indent,eol,start
   set sidescrolloff=10
@@ -143,7 +141,6 @@ match OverLength /\%81v.\+/
   " NERD Tree!
     map ,<TAB>r :NERDTreeMirror<CR>
     map ,<TAB>e :NERDTreeToggle<CR>
-    map ,<TAB>t :TlistToggle<CR>
     "map    ,<TAB><SPACE> :o .<CR>
 
   " Break @ 80 chars
